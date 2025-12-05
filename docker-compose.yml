@@ -12,14 +12,14 @@ services:
       - "32413:32413/udp"   # GDM network discovery
       - "32414:32414/udp"   # GDM network discovery
     environment:
-      - PUID=501               # Your macOS user ID
-      - PGID=20                # Your macOS "staff" group ID
+      - PUID=${PUID:-1000}     # User ID (1000 for Linux, 501 for macOS)
+      - PGID=${PGID:-1000}     # Group ID (1000 for Linux, 20 for macOS)
       - VERSION=docker
       - PLEX_CLAIM=${PLEX_CLAIM}  # Get token from https://www.plex.tv/claim/ (valid 4 min)
     volumes:
       - plex_config:/config
-      - /Users/monty/Downloads/Movies:/movies
-      - /Users/monty/Downloads/TV:/tv
+      - ${MOVIES_DIR:-./movies}:/movies
+      - ${TV_DIR:-./tv}:/tv
     restart: unless-stopped
     deploy:
       resources:

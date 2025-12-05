@@ -21,41 +21,42 @@ To uninstall later:
 
 ## Prerequisites
 
-- [Docker Desktop](https://www.docker.com/products/docker-desktop) installed and running
-- macOS user account (configured for user ID 501)
+- [Docker Desktop](https://www.docker.com/products/docker-desktop) (macOS/Windows) or Docker Engine (Linux) installed and running
 
 ## Initial Setup
 
-### 1. Get Your Plex Claim Token
+### 1. Configure Environment Variables
 
-Visit [https://www.plex.tv/claim/](https://www.plex.tv/claim/) to get your claim token.
-
-**Important:** The token expires in 4 minutes, so have it ready before starting the server.
-
-### 2. Set Your Claim Token
-
-Create a `.env` file in this directory:
+Copy the example environment file and customize it:
 
 ```bash
-echo "PLEX_CLAIM=claim-xxxxxxxxxxxx" > .env
+cp .env.example .env
 ```
 
-Replace `claim-xxxxxxxxxxxx` with your actual token from step 1.
+Edit `.env` and set the following:
 
-### 3. Customize Media Directories (Optional)
+#### Required:
+- **PLEX_CLAIM**: Get your token from [https://www.plex.tv/claim/](https://www.plex.tv/claim/)
+  - **Important:** The token expires in 4 minutes
 
-Edit `docker-compose.yml` to change the media locations:
+#### Platform-specific:
+- **PUID/PGID**: Your user and group IDs
+  - **Linux (Ubuntu/Debian)**: Usually `1000/1000` (default)
+  - **macOS**: Usually `501/20`
+  - Find yours with: `id -u` and `id -g`
 
-```yaml
-volumes:
-  - plex_config:/config
-  - /path/to/your/movies:/movies
-  - /path/to/your/tv:/tv
+#### Media directories:
+- **MOVIES_DIR**: Full path to your movies folder
+- **TV_DIR**: Full path to your TV shows folder
+
+Example `.env` file:
+```bash
+PLEX_CLAIM="claim-xxxxxxxxxxxx"
+PUID=1000
+PGID=1000
+MOVIES_DIR=/home/username/media/movies
+TV_DIR=/home/username/media/tv
 ```
-
-Current configuration:
-- Movies: `/Users/monty/Downloads/Movies`
-- TV Shows: `/Users/monty/Downloads/TV`
 
 ### 4. Start the Server
 
