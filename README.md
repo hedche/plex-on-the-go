@@ -58,7 +58,7 @@ MOVIES_DIR=/home/username/media/movies
 TV_DIR=/home/username/media/tv
 ```
 
-### 4. Start the Server
+### 2. Start the Server
 
 If you installed the `plex` command globally (via `./setup.sh`), run:
 
