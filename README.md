@@ -57,50 +57,46 @@ Current configuration:
 - Movies: `/Users/monty/Downloads/Movies`
 - TV Shows: `/Users/monty/Downloads/TV`
 
-### 4. Make the Management Script Executable
+### 4. Start the Server
+
+If you installed the `plex` command globally (via `./setup.sh`), run:
 
 ```bash
-chmod +x plex
+plex start
 ```
 
-### 5. Add Script to PATH (Optional)
-
-To run `plex` from anywhere, add a symlink:
-
-```bash
-sudo ln -s ~/dv/plex-server/plex /usr/local/bin/plex
-```
-
-Or add this directory to your PATH in `~/.zshrc` or `~/.bash_profile`:
-
-```bash
-export PATH="$HOME/dv/plex-server:$PATH"
-```
-
-## Usage
-
-### Start Plex Server
+Otherwise, run from this directory:
 
 ```bash
 ./plex start
 ```
 
+## Usage
+
+Once installed globally, you can use the `plex` command from anywhere. If not installed globally, use `./plex` from this directory.
+
+### Start Plex Server
+
+```bash
+plex start
+```
+
 ### Stop Plex Server
 
 ```bash
-./plex stop
+plex stop
 ```
 
 ### Restart Plex Server
 
 ```bash
-./plex restart
+plex restart
 ```
 
 ### View Logs
 
 ```bash
-./plex logs
+plex logs
 ```
 
 Press `Ctrl+C` to exit log view.
@@ -108,7 +104,7 @@ Press `Ctrl+C` to exit log view.
 ### Check Status
 
 ```bash
-./plex status
+plex status
 ```
 
 ## Accessing Plex
