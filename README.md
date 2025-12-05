@@ -2,6 +2,23 @@
 
 Docker-based Plex Media Server setup with easy management script.
 
+## Quick Start
+
+After cloning this repository, run the setup script to install the `plex` command:
+
+```bash
+./setup.sh
+```
+
+This will install the `plex` script to `/usr/local/bin`, making it available system-wide.
+
+**Supported systems:** macOS, Debian, Ubuntu
+
+To uninstall later:
+```bash
+./setup.sh uninstall
+```
+
 ## Prerequisites
 
 - [Docker Desktop](https://www.docker.com/products/docker-desktop) installed and running
