@@ -1,0 +1,35 @@
+#!/bin/bash
+
+COMPOSE_DIR="$HOME/dv/plex-server"
+
+cd "$COMPOSE_DIR" || {
+  echo "❌ plex-server directory not found at $COMPOSE_DIR"
+  exit 1
+}
+
+case "$1" in
+  start)
+    echo "▶️ Starting Plex..."
+    docker compose up -d
+    ;;
+  stop)
+    echo "⏹ Stopping Plex..."
+    docker compose down
+    ;;
+  restart)
+    echo "🔄 Restarting Plex..."
+    docker compose down
+    docker compose up -d
+    ;;
+  logs)
+    echo "📜 Showing Plex logs (Ctrl+C to exit)..."
+    docker compose logs -f
+    ;;
+  status)
+    docker compose ps
+    ;;
+  *)
+    echo "Usage: plex {start|stop|restart|logs|status}"
+    exit 1
+    ;;
+esac
